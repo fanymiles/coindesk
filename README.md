@@ -237,9 +237,9 @@ Example
 library(coindesk)
 library(httr)
 library(jsonlite)
-# get a sample query result from the package 
+# get a sample query result from the package (price in CNY)
 sample <- coindesk::df
-# check the head of sample data in the package
+# check the head of sample data in the package (price in CNY)
 head(sample, 10)
 ```
 
@@ -256,7 +256,7 @@ head(sample, 10)
     ## 2017-10-10 31243.36
 
 ``` r
-# plot the time and the price of the sample result
+# plot the time and the price of the sample result (price in CNY)
 plot_bpi(coindesk::df)
 ```
 
