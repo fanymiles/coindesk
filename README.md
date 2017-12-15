@@ -7,7 +7,7 @@ The `coindesk` package contains the following functions. All the functions are p
 -   `get_history()`
 -   `plot_bpi()`
 
-- Type `devtools::install_github('fanymiles/coindesk')` to install and use the package
+Type `devtools::install_github('fanymiles/coindesk')` to install and use the package
 
 `bpi_price()` Function
 ----------------------
