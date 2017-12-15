@@ -1,10 +1,3 @@
-## Final Project: A query and visualization tool for Bitcoin Price Index
-
-This is Yifeng Fan's final project. 
-- The first version of package is finished and uploaded in [coindesk](coindesk/) folder. 
-- The vignette can be founded in the following format: [Rmd](coindesk/vignettes/coindesk-vignette.Rmd) and [html](coindesk-vignette.html).
-
-
 ## Introduction to `coindesk` package:
 
 The `coindesk` package contains the following functions. All the functions are powered by [CoinDesk](https://www.coindesk.com/price/).
