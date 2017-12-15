@@ -1,0 +1,2 @@
+"0","# check the last ten currencies"
+"0","tail(currency, 10)"

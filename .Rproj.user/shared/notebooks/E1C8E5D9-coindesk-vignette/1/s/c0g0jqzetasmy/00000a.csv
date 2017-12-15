@@ -1,0 +1,2 @@
+"0","# query current BPI in EUR"
+"0","bpi_price(currency = 'EUR')"

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Plot the historical data of BPI.\n#'\n#' This function is used to draw a simple plot for historical BPI.\n#' Powered by CoinDesk: https://www.coindesk.com/price/\n#'\n#' @param df Query result from history BPI\n#'\n#' @export\n#' @examples\n#' plot_bpi(df)\n\nplot_bpi <- function(df) {\n  #library(lubridate)\n  #print(rownames(df))\n  df$time <- lubridate::ymd(rownames(df))\n  ggplot2::ggplot(df, ggplot2::aes(df$time, df$price)) + ggplot2::geom_line(group = 1) +\n    ggplot2::scale_x_date(date_labels = \"%m-%d\") +\n    ggplot2::xlab(\"Time\") + ggplot2::ylab(\"Price\")\n}\n\n#plot_bpi(df)\n",
+    "created" : 1513030589044.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4254495638",
+    "id" : "C5A38F95",
+    "lastKnownWriteTime" : 1513128202,
+    "last_content_update" : 1513128202317,
+    "path" : "~/Desktop/GitHub/Fan_Yifeng/Final_Project/coindesk/R/plot.R",
+    "project_path" : "R/plot.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

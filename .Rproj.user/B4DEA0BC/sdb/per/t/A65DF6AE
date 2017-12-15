@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Query the history Bitcoin Price Index.\n#'\n#' This function is used to query the history BPI.\n#' Currency, start date, end date can be specified in the query.\n#' The return dataframe consists of BPI data and respective date.\n#' Powered by CoinDesk: https://www.coindesk.com/price/\n#'\n#' @param currency Query currency code (default is USD).\n#' @param start Query start date, YYYY-MM-DD format.(default is last one month)\n#' @param end Query end date, YYYY-MM-DD format.\n#' @param yesterday Logical variable, if set to true, will return yesterday's BPI.\n#' @return Return a dataframe consists of historical BPI.\n#' @export\n#' @examples\n#' get_history('CNY','2017-10-11','2017-11-20')\n#' get_history(yesterday=TRUE)\n#' get_history('CNY')\n#' get_history()\n\nget_history <- function(currency = NULL, start = NULL, end = NULL, yesterday = FALSE) {\n\n  if (is.null(currency)) cur <- 'USD'\n  else cur <- currency\n  url <- \"https://api.coindesk.com/v1/bpi/historical/close.json?\"\n  if (yesterday == TRUE) {\n    request <- httr::GET(url, query = list(currency = cur, 'for' = 'yesterday'))\n    if (httr::status_code(request) != 200) {\n      cat('Bad response, please try again')\n      return()\n    }\n    json <- httr::content(request,\"text\", encoding = \"ISO-8859-1\")\n    listData <- jsonlite::fromJSON(json)$bpi\n    df <- do.call(\"rbind\", lapply(listData, data.frame))\n    colnames(df) <- 'price'\n    return(df)\n  }\n  # user does't specify start date and end date\n  if (is.null(start)) {\n    request <- httr::GET(url, query = list(currency = cur))\n    if (httr::status_code(request) != 200) {\n      cat('Bad response, please try again')\n      return()\n    }\n    json <- httr::content(request,\"text\", encoding = \"ISO-8859-1\")\n    listData <- jsonlite::fromJSON(json)$bpi\n    df <- do.call(\"rbind\", lapply(listData, data.frame))\n    colnames(df) <- 'price'\n    return(df)\n  }\n\n  request <- httr::GET(url, query = list(currency = cur, start = start, end = end))\n  if (httr::status_code(request) != 200) {\n    cat('Bad response, please try again')\n    return()\n  }\n  json <- httr::content(request,\"text\", encoding = \"ISO-8859-1\")\n  listData <- jsonlite::fromJSON(json)$bpi\n  df <- do.call(\"rbind\", lapply(listData, data.frame))\n  colnames(df) <- 'price'\n  return(df)\n}\n",
+    "created" : 1513028047134.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2156146088",
+    "id" : "A65DF6AE",
+    "lastKnownWriteTime" : 1513127192,
+    "last_content_update" : 1513127192542,
+    "path" : "~/Desktop/GitHub/Fan_Yifeng/Final_Project/coindesk/R/history.R",
+    "project_path" : "R/history.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

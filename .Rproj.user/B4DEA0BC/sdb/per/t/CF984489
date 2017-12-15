@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Get the currency code for Bitcoin Price Index query.\n#'\n#' This function is used to show all the currency codes used for BPI query.\n#' Powered by CoinDesk: https://www.coindesk.com/price/\n#'\n#' @return Return a dataframe consists of supported currency codes.\n#' @export\n#' @examples\n#' get_currency_code()\n\nget_currency_code <- function() {\n\n  url <- \"https://api.coindesk.com/v1/bpi/supported-currencies.json\"\n  request <- httr::GET(url)\n  if (httr::status_code(request) != 200) {\n    cat('Bad response, please try again')\n    return()\n  }\n  json <- httr::content(request,\"text\", encoding = \"ISO-8859-1\")\n  df <- jsonlite::fromJSON(json)\n  return(df)\n}\n\n# get_currency_code()\n\n\n",
+    "created" : 1513022160233.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "466899264",
+    "id" : "CF984489",
+    "lastKnownWriteTime" : 1513127214,
+    "last_content_update" : 1513127214729,
+    "path" : "~/Desktop/GitHub/Fan_Yifeng/Final_Project/coindesk/R/currency.R",
+    "project_path" : "R/currency.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

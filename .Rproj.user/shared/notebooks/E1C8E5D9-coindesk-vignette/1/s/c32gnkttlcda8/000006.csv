@@ -1,0 +1,5 @@
+"0","library(coindesk)"
+"0","# check and get currency code"
+"0","currency <- get_currency_code()"
+"0","# check the first ten currencies"
+"0","head(currency, 10)"

@@ -1,0 +1,6 @@
+"0","library(coindesk)"
+"0","library(httr)"
+"0","library(jsonlite)"
+"0","# query current Bitcoin Price Index in a list of currencies"
+"0","currency <- c(""EUR"",""CNY"",""AUD"")"
+"0","bpi_price(currency)"

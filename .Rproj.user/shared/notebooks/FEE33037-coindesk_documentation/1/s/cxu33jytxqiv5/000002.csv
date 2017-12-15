@@ -1,0 +1,22 @@
+"0","```r
+currency <- c('EUR','CNY')
+baseURL <- \"https://api.coindesk.com/v1/bpi/currentprice/\"
+res <- NULL
+for (cur in currency) {
+  url <- paste(baseURL,cur,\".json\",sep = '')
+  request <- GET(url)
+  if (status_code(request) != 200) {
+      cat('Bad response, please try again') 
+      return()
+    }
+  
+  json <- content(request, \"text\", encoding = \"ISO-8859-1\")
+  df <- fromJSON(json)
+  time <- df$time$updated
+  code <- df$bpi[[cur]]$code
+  description <- df$bpi[[cur]]$description
+  rate <- df$bpi[[cur]]$rate_float
+  res <- rbind(res, data.frame(time,code,description,rate))
+  return(res)
+}
+```"

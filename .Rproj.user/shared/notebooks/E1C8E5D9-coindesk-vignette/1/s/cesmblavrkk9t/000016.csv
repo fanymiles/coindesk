@@ -1,0 +1,7 @@
+"0","library(coindesk)"
+"0","library(httr)"
+"0","library(jsonlite)"
+"0","# get a sample query result from the package "
+"0","sample <- coindesk::df"
+"0","# check the head of sample data in the package"
+"0","head(sample, 10)"

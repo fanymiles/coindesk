@@ -1,0 +1,2 @@
+"0","# get yesterday BPI, in CNY"
+"0","get_history(currency = 'CNY', yesterday = TRUE)"

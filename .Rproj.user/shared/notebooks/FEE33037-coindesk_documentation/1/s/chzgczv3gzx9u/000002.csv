@@ -1,0 +1,22 @@
+"0","```r
+library(httr)
+library(jsonlite)
+url <- \"https://api.coindesk.com/v1/bpi/historical/close.json?\"
+cur <- 'CNY'
+yesterday <- 'yesterday'
+end <- ''
+start <- ''
+request <- GET(url, query = list(currency = cur, 'for' = 'yesterday'))
+if (status_code(request) != 200) {
+  cat('Bad response, please try again')
+  return()
+}
+json <- content(request,\"text\", encoding = \"ISO-8859-1\")
+listData <- fromJSON(json)$bpi
+df <- do.call(\"rbind\", lapply(listData, data.frame))
+#df <- data.frame(time = row.names(df), df)
+colnames(df) <- 'price'
+#time <- seq(as.Date(start), as.Date(end), by = \"1 d\")
+#plot(as.Date(time, format = \"%D/%M/%Y\"),df$price,type = 'o', xlab = 'time', ylab = 'price')
+df
+```"

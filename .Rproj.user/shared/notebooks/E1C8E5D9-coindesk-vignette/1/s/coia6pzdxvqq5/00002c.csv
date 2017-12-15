@@ -1,0 +1,7 @@
+"0","library(coindesk)"
+"0","library(httr)"
+"0","library(jsonlite)"
+"0","# get past 31 days BPI in CNY"
+"0","past_month <- get_history(currency = 'CNY')"
+"0","# check the head of past month data"
+"0","head(past_month, 10)"

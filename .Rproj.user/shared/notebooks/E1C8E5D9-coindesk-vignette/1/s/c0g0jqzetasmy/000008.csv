@@ -1,0 +1,5 @@
+"0","library(coindesk)"
+"0","library(httr)"
+"0","library(jsonlite)"
+"0","# query current Bitcoin Price Index default in USD"
+"0","bpi_price()"

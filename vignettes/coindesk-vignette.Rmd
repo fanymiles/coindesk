@@ -1,0 +1,127 @@
+---
+title: "The Coindesk Package Explained"
+author: "Yifeng Fan"
+date: "12/12/2017"
+output: rmarkdown::html_vignette
+  github_document: default
+vignette: >
+  %\VignetteIndexEntry{The Coindesk Package Explained}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+The `coindesk` package contains the following functions. All the functions are powered by [CoinDesk](https://www.coindesk.com/price/).
+
+- `bpi_price()` 
+- `get_currency_code()` 
+- `get_history()`
+- `plot_bpi()`
+
+
+## `bpi_price()` Function
+  
+The `bpi_price()` function query the current price of BPI. Currency can be specified by adding a list of currency codes. The return dataframe consists of four columns data including currency code, description, float rate and time.
+
+## Example 1: query current BPI 
+
+```{r, message=FALSE, warning=FALSE}
+library(coindesk)
+library(httr)
+library(jsonlite)
+# query current Bitcoin Price Index default in USD
+bpi_price()
+# query current BPI in EUR
+bpi_price(currency = 'EUR')
+```
+This call of the function will return a dataframe consists of BPI in the currency specified by the user (defaul in USD). 
+
+## Example 2: query current BPI in a list of currency
+```{r, message=FALSE, warning=FALSE}
+library(coindesk)
+library(httr)
+library(jsonlite)
+# query current Bitcoin Price Index in a list of currencies
+currency <- c("EUR","CNY","AUD")
+bpi_price(currency)
+```
+
+This call will return a dataframe consists of BPI in a list of currencies.
+
+## `get_currency_code()` Function
+
+The `get_currency_code()` function is used to show the currency codes used for BPI query. It consists of 167 contries' currency codes.
+
+## Example
+
+```{r, message=FALSE, warning=FALSE}
+library(coindesk)
+# check and get currency code
+currency <- get_currency_code()
+# check the first ten currencies
+head(currency, 10)
+# check the last ten currencies
+tail(currency, 10)
+# check the number of supported currencies (167 countries in total)
+length(currency$currency) 
+```
+
+## `get_history()` Function 
+This function will return the history BPI. Currency, start date, end date can be specified in the query using parameter `currency`, `start` and `end`. The default currency is USD and the default time duration is last one month. The function will return yesterday's BPI if `yesterday` parameter is set to `TRUE`
+
+## Example 1: query past one month data
+
+```{r, message=FALSE, warning=FALSE}
+library(coindesk)
+library(httr)
+library(jsonlite)
+# get past 31 days BPI in CNY
+past_month <- get_history(currency = 'CNY')
+# check the head of past month data
+head(past_month, 10)
+# check the tail of past month data
+tail(past_month, 10)
+# length of the past_month (31 days)
+length(past_month$price)
+```
+
+## Example 2: query data by specifying date
+```{r, message=FALSE, warning=FALSE}
+library(coindesk)
+library(httr)
+library(jsonlite)
+# get historical BPI from Oct.1 2017 to Dec.1 2017 in EUR
+randomDate <- get_history(currency = 'EUR', start = '2017-10-01', end = '2017-12-01')
+# check the head of data selected from random date
+head(randomDate, 10)
+# check the tail of data selected from random date
+tail(randomDate, 10)
+```
+
+## Example 3: query yesterday data
+```{r, message=FALSE, warning=FALSE}
+library(coindesk)
+library(httr)
+library(jsonlite)
+# get yesterday BPI (default in USD)
+get_history(yesterday = TRUE)
+# get yesterday BPI, in CNY
+get_history(currency = 'CNY', yesterday = TRUE)
+```
+
+
+## `plot_bpi()` Function 
+This function will plot the historical BPI data. The parameter `df` is the dataframe that returned from the `get_history()` function.
+
+## Example
+
+```{r, fig.align="center", fig.height=4.32, fig.width=7, message=FALSE, warning=FALSE}
+library(coindesk)
+library(httr)
+library(jsonlite)
+# get a sample query result from the package 
+sample <- coindesk::df
+# check the head of sample data in the package
+head(sample, 10)
+# plot the time and the price of the sample result
+plot_bpi(coindesk::df)
+```
+

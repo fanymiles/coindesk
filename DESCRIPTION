@@ -1,0 +1,22 @@
+Package: coindesk
+Type: Package
+Title: A tool for Bitcoin Price Index query and visualization 
+Version: 0.1.0
+Author: person("Yifeng", "Fan", email = "yifengfan@foxmail.com", role = c("aut", "cre"))
+Maintainer: The package maintainer <yifengfan@foxmail.com>
+Description: This package is designed for Bitcoin Price Index query and visualization. 
+    Users can query BPI by specifying currency and plot historical BPI data.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    httr,
+    ggplot2,
+    jsonlite,
+    lubridate
+RoxygenNote: 6.0.1.9000
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr

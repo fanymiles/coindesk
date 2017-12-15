@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Query the current Bitcoin Price Index.\n#'\n#' This function is used to query the current price of BPI.\n#' Currency can be specified by adding a list of currency codes.\n#' The return dataframe consists of four columns data including currency code, description, float rate and time.\n#' Powered by CoinDesk: https://www.coindesk.com/price/\n#'\n#' @param currency A list of currency code (default is USD).\n#' @return Return a dataframe consists of current BPI.\n#' @export\n#' @examples\n#' bpi_price()\n#' bpi_price(c(\"EUR\",\"CNY\"))\n\nbpi_price <- function(currency = NULL) {\n\n  if (is.null(currency))\n  {\n    url <- \"https://api.coindesk.com/v1/bpi/currentprice.json\"\n    request <- httr::GET(url)\n    if (httr::status_code(request) != 200) {\n      cat('Bad response, please try again')\n      return()\n    }\n    json <- httr::content(request, \"text\", encoding = \"ISO-8859-1\")\n    df <- jsonlite::fromJSON(json)\n    time <- df$time$updated\n    code <- df$bpi$USD$code\n    description <- df$bpi$USD$description\n    rate <- df$bpi$USD$rate_float\n    res <- data.frame(code,description,rate,time)\n    return(res)\n  }\n  # query price from currencies specified by user\n  baseURL <- \"https://api.coindesk.com/v1/bpi/currentprice/\"\n  res <- NULL\n  for (cur in currency) {\n    url <- paste(baseURL,cur,\".json\",sep = '')\n    request <- httr::GET(url)\n    if (httr::status_code(request) != 200) {\n      cat('Wrong input currency code, please try again')\n      return()\n    }\n    json <- httr::content(request, \"text\", encoding = \"ISO-8859-1\")\n    df <- jsonlite::fromJSON(json)\n    time <- df$time$updated\n    code <- df$bpi[[cur]]$code\n    description <- df$bpi[[cur]]$description\n    rate <- df$bpi[[cur]]$rate_float\n    res <- rbind(res, data.frame(code,description,rate,time))\n  }\n  return(res)\n}\n\n# bpi_price(c('EUR','CNY','ETB'))\n\n",
+    "created" : 1512935952682.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3792302631",
+    "id" : "D01F7BD1",
+    "lastKnownWriteTime" : 1513127286,
+    "last_content_update" : 1513127286657,
+    "path" : "~/Desktop/GitHub/Fan_Yifeng/Final_Project/coindesk/R/query.R",
+    "project_path" : "R/query.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

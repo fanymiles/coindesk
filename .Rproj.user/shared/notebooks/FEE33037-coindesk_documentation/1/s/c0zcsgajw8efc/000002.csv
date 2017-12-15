@@ -1,0 +1,8 @@
+"0","```r
+url <- \"https://api.coindesk.com/v1/bpi/supported-currencies.json\"
+library(httr)
+request <- GET(url)
+json <- content(request,\"text\", encoding = \"ISO-8859-1\")
+df <- fromJSON(json)
+df
+```"

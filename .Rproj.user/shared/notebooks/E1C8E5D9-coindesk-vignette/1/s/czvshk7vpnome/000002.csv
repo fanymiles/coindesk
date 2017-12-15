@@ -1,0 +1,7 @@
+"0","library(coindesk)"
+"0","library(httr)"
+"0","library(jsonlite)"
+"0","# get historical BPI from Oct.1 2017 to Dec.1 2017 in EUR"
+"0","randomDate <- get_history(currency = 'EUR', start = '2017-10-01', end = '2017-12-01')"
+"0","# check the head of data selected from random date"
+"0","head(randomDate, 10)"

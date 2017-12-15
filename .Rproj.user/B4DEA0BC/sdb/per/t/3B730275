@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Bitcoin Price Index presented in CNY from 2017-10-01 to 2017-12-01\n#'\n#' This data provides a small sample of the query result from the get_history() function.\n#' The original query function is set as: get_history(currency = 'CNY',start = '2017-10-01', end = '2017-12-01'), where the currency is specified as CNY. And start date and end date are specified as above.\n#' The rownames of the data frame are repective time.\n#'\n#' @usage{\"df\"}\n#' @format The df data frame contains 62 observations on 1 variable.\n#' \\describe{\n#'   \\item{price}{The Bitcoin Price Index, in CNY}\n#' }\n#' @source \\url{ https://www.coindesk.com/price/}\n\"df\"\n",
+    "created" : 1513199280539.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "177073109",
+    "id" : "3B730275",
+    "lastKnownWriteTime" : 1513201469,
+    "last_content_update" : 1513201469059,
+    "path" : "~/Desktop/GitHub/Fan_Yifeng/Final_Project/coindesk/R/data.R",
+    "project_path" : "R/data.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

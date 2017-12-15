@@ -1,0 +1,26 @@
+"0","```r
+library(httr)
+library(jsonlite)
+url <- \"https://api.coindesk.com/v1/bpi/currentprice.json\"
+request <- GET(url)
+# detect encoding
+# stringi::stri_enc_detect(content(request, \"raw\"))
+status_code(request)
+```"
+"1","[1] 200
+"
+"0","```r
+json <- content(request, \"text\", encoding = \"ISO-8859-1\")
+json
+```"
+"1","[1] \"{\\"time\\":{\\"updated\\":\\"Dec 11, 2017 01:51:00 UTC\\",\\"updatedISO\\":\\"2017-12-11T01:51:00+00:00\\",\\"updateduk\\":\\"Dec 11, 2017 at 01:51 GMT\\"},\\"disclaimer\\":\\"This data was produced from the CoinDesk Bitcoin Price Index (USD). Non-USD currency data converted using hourly conversion rate from openexchangerates.org\\",\\"chartName\\":\\"Bitcoin\\",\\"bpi\\":{\\"USD\\":{\\"code\\":\\"USD\\",\\"symbol\\":\\"&#36;\\",\\"rate\\":\\"15,837.7575\\",\\"description\\":\\"United States Dollar\\",\\"rate_float\\":15837.7575},\\"GBP\\":{\\"code\\":\\"GBP\\",\\"symbol\\":\\"&pound;\\",\\"rate\\":\\"11,826.8613\\",\\"description\\":\\"British Pound Sterling\\",\\"rate_float\\":11826.8613},\\"EUR\\":{\\"code\\":\\"EUR\\",\\"symbol\\":\\"&euro;\\",\\"rate\\":\\"13,453.9058\\",\\"description\\":\\"Euro\\",\\"rate_float\\":13453.9058}}}\"
+"
+"0","```r
+df <- fromJSON(json)
+time <- df$time$updated
+code <- df$bpi$USD$code
+description <- df$bpi$USD$description
+rate <- df$bpi$USD$rate_float
+res <- data.frame(time,code,description,rate)
+#res
+```"
