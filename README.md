@@ -1,4 +1,4 @@
-## Introduction to `coindesk` package:
+## R `coindesk` Package : A Tool for Bitcoin Index Price Query and Visualization
 
 The `coindesk` package contains the following functions. All the functions are powered by [CoinDesk](https://www.coindesk.com/price/).
 
